@@ -1,0 +1,34 @@
+# Compiled output
+target/
+build/
+out/
+bin/
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.classpath
+.project
+.settings/
+.factorypath
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Local env / secrets
+application-local.properties
+.env
+.env.local
+
+# Maven wrapper (we'll keep these actually — comment out next two lines)
+# .mvn/
+# mvnw
+# mvnw.cmd
