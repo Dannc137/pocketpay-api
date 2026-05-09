@@ -1,10 +1,4 @@
-44 files committed cleanly. 🎉
 
-Now let's create the README — this is the file recruiters and hiring managers actually read first when they open your repo.
-
-I'll write you a strong one based on everything we built. Create a new file called `README.md` in the **root of your project** (the same folder as `.git`, NOT inside `pocketpayapi/`). Paste this in:
-
-```markdown
 # PocketPay — Wallet API
 
 A Nigerian fintech wallet API built with **Java 17** and **Spring Boot 3.5**. Inspired by how products like Kuda, OPay, and PiggyVest work under the hood — closed-loop wallet system with Paystack integration for funding.
