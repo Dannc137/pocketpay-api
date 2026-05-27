@@ -25,6 +25,8 @@ import com.pocketpay.pocketpayapi.security.JwtUtil;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import java.util.Optional;
+
 @ExtendWith(MockitoExtension.class)
 public class AuthServiceTest {
 
@@ -124,5 +126,27 @@ public class AuthServiceTest {
                 () -> authService.login(request));
 
         verify(jwtUtil, never()).generateToken(any());
+    }
+
+    @Test
+    void login_succeeds_with_valid_credentials() {
+        LoginRequest request = new LoginRequest();
+        request.setEmail("daniel@gmail.com");
+        request.setPassword("password");
+
+        when(userRepository.findByEmail("daniel@gmail.com")).thenReturn(Optional.of(savedUser));
+        when(jwtUtil.generateToken("daniel@gmail.com")).thenReturn("fake_jwt_token");
+
+        AuthResponse response = authService.login(request);
+
+        assertNotNull(response);
+        assertEquals("fake_jwt_token", response.getToken());
+        assertEquals("Bearer", response.getTokenType());
+        assertEquals("daniel@gmail.com", response.getUser().getEmail());
+
+        verify(authenticationManager, times(1))
+                .authenticate(any(UsernamePasswordAuthenticationToken.class));
+                
+        verify(jwtUtil, times(1)).generateToken("daniel@gmail.com");
     }
 }
